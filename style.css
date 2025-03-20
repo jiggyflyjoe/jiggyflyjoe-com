@@ -1,0 +1,194 @@
+html {
+  box-sizing: border-box;
+  margin: 0 auto;
+  background-color: #0d052a;
+}
+
+body {
+  font-family: 'Manrope', sans-serif;
+  text-align: center;
+  width: 750px;
+  height: 1400px;
+  margin: 0 auto;
+}
+
+#content-container {
+  padding: 8px;
+  border: 1px dashed white;
+  border-top: none;
+  border-bottom: none;
+}
+
+section {
+  page-break-after: auto;
+}
+
+#home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+}
+
+#about {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+}
+
+#content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+}
+
+#connect {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+}
+
+#navbar {
+  position: fixed;
+  bottom: 20px;
+  right: 586px;
+  margin-top: 0.25px;
+}
+
+ul {
+  display: flex;
+  list-style-type: none;
+}
+
+li {
+  display: flex;
+  padding: 4px;
+  background-color: #0d052a;
+  border: 1px solid white;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 6px;
+}
+
+li:hover {
+  border: 1px solid #d5003d;
+  border-radius: 10px;
+  transition: 0.5s;
+}
+
+li a {
+  color: #96979c;
+  font-family: 'Manrope', sans-serif;
+  font-size: 20px;
+  font-style: italic;
+}
+
+li a:hover {
+  text-decoration: underline;
+  color: #d5003d;
+}
+
+h1 {
+  color: white;
+  font-size: 50px;
+  font-family: 'Manrope', sans-serif;
+  margin-bottom: 2px;
+}
+
+.subheading {
+  color: #96979c;
+  font-family: 'Manrope', sans-serif;
+  font-size: 28px;
+  margin-top: -10px;
+}
+
+h1 span {
+  position: relative;
+  z-index: 1;
+}
+
+h1 span::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: -2px;
+  right: -2px;
+  background-color: #d5003d;
+  opacity: 90%;
+  transform: skew(-15deg, -2deg);
+  z-index: -1;
+}
+
+p {
+  color: white;
+  font-size: 20px;
+  margin-top: -8px;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 4px;
+  background-color: #0d052a;
+  font-size: 20px;
+  color: white;
+  border: 1px solid white;
+  border-radius: 4px;
+  padding: 12px;
+  min-height: 50px;
+  cursor: pointer;
+}
+
+.button:hover {
+  color: #d5003d;
+  border: 1px solid #d5003d;
+  border-radius: 4px;
+  transition: 0.5s;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #d5003d;
+  transition: 0.5s;
+}
+
+img {
+  display: flex;
+  border: none;
+  border-radius: 50%;
+  width: 200px;
+  margin-bottom: 14px;
+}
+
+img:hover {
+  transform: rotate(20deg);
+  transition: 0.5s;
+}
+
+#connect i {
+  font-size: 36px;
+  padding: 4px;
+}
+
+.footer-text {
+  background-color: #0d052a;
+  font-size: 11px;
+}
+
+@media (max-width: 1250px) {
+  
+}
