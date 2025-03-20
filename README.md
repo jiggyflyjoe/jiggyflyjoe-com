@@ -1,2 +1,3 @@
 # jiggyflyjoe-com
-Hand-coded static site.
+
+A static website created for my domain.
