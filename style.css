@@ -7,9 +7,10 @@ html {
 body {
   font-family: 'Manrope', sans-serif;
   text-align: center;
-  width: 750px;
-  height: 1400px;
+  max-width: 100%;
   margin: 0 auto;
+  float: center;
+  width: 40%;
 }
 
 #content-container {
@@ -28,7 +29,7 @@ section {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 #about {
@@ -36,7 +37,7 @@ section {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 #content {
@@ -44,7 +45,7 @@ section {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 #connect {
@@ -52,29 +53,7 @@ section {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 100vh;
-}
-
-#navbar {
-  position: fixed;
-  bottom: 20px;
-  right: 586px;
-  margin-top: 0.25px;
-}
-
-ul {
-  display: flex;
-  list-style-type: none;
-}
-
-li {
-  display: flex;
-  padding: 4px;
-  background-color: #0d052a;
-  border: 1px solid white;
-  border-radius: 10px;
-  padding: 10px;
-  margin: 6px;
+  min-height: 100vh;
 }
 
 li:hover {
@@ -133,22 +112,21 @@ p {
   margin-top: -8px;
 }
 
-.button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+button {
+  display: inline-flex;
   margin: 4px;
+  margin-bottom: 20px;
   background-color: #0d052a;
   font-size: 20px;
-  color: white;
-  border: 1px solid white;
+  color: #96979c;
+  border: 1px solid #96979c;
   border-radius: 4px;
   padding: 12px;
-  min-height: 50px;
+  min-height: 30px;
   cursor: pointer;
 }
 
-.button:hover {
+button:hover {
   color: #d5003d;
   border: 1px solid #d5003d;
   border-radius: 4px;
@@ -170,7 +148,7 @@ img {
   display: flex;
   border: none;
   border-radius: 50%;
-  width: 200px;
+  max-width: 175px;
   margin-bottom: 14px;
 }
 
@@ -179,7 +157,7 @@ img:hover {
   transition: 0.5s;
 }
 
-#connect i {
+.icons {
   font-size: 36px;
   padding: 4px;
 }
@@ -189,6 +167,8 @@ img:hover {
   font-size: 11px;
 }
 
-@media (max-width: 1250px) {
-  
+@media screen and (max-width: 768px) {
+  body {
+    width: 100%;
+  }
 }
