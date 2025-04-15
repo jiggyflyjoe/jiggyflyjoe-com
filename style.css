@@ -88,12 +88,12 @@ h1 {
   margin-top: -10px;
 }
 
-h1 span {
+.name {
   color: white;
   text-decoration: underline #d5003d;
 }
 
-h1 span:hover {
+.name:hover {
   color: #d5003d;
   text-decoration: underline white;
   transition: 0.5s;
@@ -166,6 +166,23 @@ a:hover {
 .note {
   background-color: #0d052a;
   font-size: 11px;
+}
+
+.wave {
+  display: inline-block;
+  transform-origin: 70% 70%;
+  animation: wave-hand 2.5s infinite;
+}
+
+@keyframes wave-hand {
+  0% { transform: rotate(0deg); }
+  10% { transform: rotate(14deg); }
+  20% { transform: rotate(-8deg); }
+  30% { transform: rotate(14deg); }
+  40% { transform: rotate(-4deg); }
+  50% { transform: rotate(10deg); }
+  60% { transform: rotate(0deg); }
+  100% { transform: rotate(0deg); }
 }
 
 .footer-text {
