@@ -81,11 +81,33 @@ h1 {
   margin-bottom: 2px;
 }
 
+h2 {
+  color: white;
+  font-size: 40px;
+  font-family: 'Manrope', sans-serif;
+  margin-bottom: 8px;
+}
+
 .subheading {
+  color: #96979c;
+  font-family: 'Manrope', sans-serif;
+  font-style: italic;
+  font-size: 28px;
+  margin-top: -14px;
+  margin-bottom: 16px;
+}
+
+.sub-link {
   color: #96979c;
   font-family: 'Manrope', sans-serif;
   font-size: 28px;
   margin-top: -10px;
+}
+
+.sub-link:hover {
+  color: #d5003d;
+  text-decoration: none;
+  transition: 0.5s;
 }
 
 .name {
@@ -128,11 +150,11 @@ button:hover {
 
 a {
   color: white;
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 a:hover {
-  text-decoration: underline;
+  text-decoration: none;
   color: #d5003d;
   transition: 0.5s;
 }
@@ -155,17 +177,9 @@ a:hover {
   padding: 2px;
 }
 
-.socialbtn {
-  transition: transform 0.2s ease-in-out;
-}
-
-.socialbtn:hover {
-  transform: scale(1.05);
-}
-
 .note {
   background-color: #0d052a;
-  font-size: 11px;
+  font-size: 14px;
 }
 
 .wave {
