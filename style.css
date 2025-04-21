@@ -217,7 +217,7 @@ a:hover {
   transform: translateY(0);
 }
 
-/* @MEDIA EFFECTS BELOW HELP MOBILE RESPONSIVENESS */
+/* @MEDIA EFFECTS BELOW TO HELP MOBILE RESPONSIVENESS */
 
 @media screen and (max-width: 768px) {
   body {
