@@ -1,3 +1,3 @@
 # jiggyflyjoe-com
 
-A static website created for my domain.
+Website created for my domain, [jiggyflyjoe.com](https://jiggyflyjoe.com)!
