@@ -168,6 +168,11 @@ a:hover {
   margin-bottom: 14px;
 }
 
+.photo:hover {
+  filter: blur(2px);
+  transition: 0.5s;
+}
+
 .icons {
   font-size: 30px;
   padding-top: 10px;
