@@ -1,17 +1,56 @@
 ---
+import Layout from '../layouts/layout.astro';
 
+const response = await fetch(
+	'https://public.api.bsky.app/xrpc/app.bsky.feed.getAuthorFeed?actor=jiggyflyjoe.com&limit=6'
+);
+const data = await response.json();
+const posts = data.feed.filter(item => !item.post.record.reply);
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Home">
+	<section class="hero">
+		<div class="hero-text">
+			<h1 class="hero-headline">Hey, I'm <span class="accent"><em>jiggyflyjoe</span></em>! 👋</h1>
+			<p class="hero-content">You can call me “jiggy” or Joe. “jiggly” is factually incorrect, but still fine. I'm a gamer, content creator, blogger, media enthusiast, web dev in training, and proud cat dad to four furry little guys. I make calm, low-pressure content abut gaming, tech, and creative rambling in general for people who don't vibe with loud, angry internet culture.</p>
+			<div class="hero-links">
+				<a href="/blog" class="btn">Latest Posts</a>
+				<a href="https://twitch.tv/jiggyflyjoe" class="btn btn-outline" target="_blank">Watch Live <i class="fa-solid fa-circle fa-beat"></i></a>
+			</div>
+		</div>
+		<div class="hero-image">
+			<img src="/PXL_20250818_2204133062-scaled.jpg" alt="jiggyflyjoe and his cat Rufus." />
+		</div>
+	</section>
+
+	<section class="feed">
+    <h2>Latest from <span class="accent"><em>Bluesky</em></span> <i class="fa-brands fa-bluesky"></i></h2>
+    <p class="feed-intro">What I've been posting lately...</p>
+
+    <div class="feed-list">
+      {posts.map((item) => {
+		const post = item.post;
+		const text = post.record.text;
+		const date = new Date(post.record.createdAt).toLocaleDateString('en-US', {
+			year: 'numeric',
+			month: 'long',
+			day: 'numeric'
+		});
+		const url = `https://bsky.app/profile/jiggyflyjoe.com/post/${post.uri.split('/').pop()}`;
+		return (
+			<a href="{url}" target="_blank" class="feed-card">
+				<span class="post-date">{date}</span>
+				<p>{text}</p>
+				<span class="post-read">View on Bluesky →</span>
+			</a>
+		);
+	  })}
+    </div>
+
+    <div class="feed-footer">
+      <a href="https://bsky.app/profile/jiggyflyjoe.com" target="_blank" class="btn btn-outline">
+        <i class="fa-brands fa-bluesky"></i> Follow on Bluesky
+      </a>
+    </div>
+  </section>
+</Layout>

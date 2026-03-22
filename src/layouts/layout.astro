@@ -1,0 +1,53 @@
+---
+const { title } = Astro.props;
+---
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{title}</title>
+        <link rel="stylesheet" href="/src/styles/global.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+        <script is:inline src="/theme.js"></script>
+    </head>
+
+    <body>
+        <header>
+            <div class="site-wrapper">
+                <a href="/" class="site-logo">JIGGYFLYJOE</a>
+                <nav>
+                    <a href="/">Home</a>
+                    <a href="/blog">Blog</a>
+                    <a href="/now">Now</a>
+                    <a href="/about">About</a>
+                    <a href="/contact">Contact</a>
+                </nav>
+                <div class="nav-socials">
+                    <a href="https://bsky.app/profile/jiggyflyjoe.com" target="_blank" rel="me" aria-label="Bluesky"><i class="fa-brands fa-bluesky"></i></a>
+                    <a href="https://mastodon.social/@jiggyflyjoe" target="_blank" rel="me" aria-label="Mastodon"><i class="fa-brands fa-mastodon"></i></a>
+                    <a href="https://twitch.tv/jiggyflyjoe" target="_blank" rel="me" aria-label="Twitch"><i class="fa-brands fa-twitch"></i></a>
+                    <a href="https://youtube.com/@jiggyflyjoe" target="_blank" rel="me" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://tiktok.com/@jiggyflyjoe" target="_blank" rel="me" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="https://discord.gg/k93qVPJqkt" target="_blank" rel="me" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+                    <a href="mailto:joe@jiggyflyjoe.com" target="_blank" rel="me" aria-label="Email"><i class="fa-regular fa-envelope"></i></a>
+                </div>
+                <button id="theme-toggle">🌙</button>
+            </div>
+        </header>
+
+        <main>
+            <div class="site-wrapper">
+                <slot />
+            </div>
+        </main>
+
+        <footer>
+            <div class="site-wrapper">
+                <p>Built with <a href="https://astro.build" target="_blank">Astro</a> & <a href="https://atproto.com" target="_blank">ATProto</a>!</p>
+            </div>
+        </footer>
+    </body>
+</html>
