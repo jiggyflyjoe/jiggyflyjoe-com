@@ -22,7 +22,7 @@ const posts = data.records;
                 });
                 const url = `https://pckt.blog/b/jiggyflyjoe${val.path}`;
                 return (
-                    <a href="{url}" target="_blank" class="post-card">
+                    <a href={url} target="_blank" class="post-card">
                         <span class="post-date">{date}</span>
                         <h2>{val.title}</h2>
                         <p>{val.description}</p>

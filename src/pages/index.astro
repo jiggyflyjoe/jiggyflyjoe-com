@@ -38,7 +38,7 @@ const posts = data.feed.filter(item => !item.post.record.reply);
 		});
 		const url = `https://bsky.app/profile/jiggyflyjoe.com/post/${post.uri.split('/').pop()}`;
 		return (
-			<a href="{url}" target="_blank" class="feed-card">
+			<a href={url} target="_blank" class="feed-card">
 				<span class="post-date">{date}</span>
 				<p>{text}</p>
 				<span class="post-read">View on Bluesky →</span>
