@@ -425,6 +425,11 @@ footer {
     margin-top: 1.5rem;
 }
 
+.feed-loading {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
 .fa-bluesky {
     color: #0f73ff;
 }

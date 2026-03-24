@@ -1,11 +1,5 @@
 ---
 import Layout from '../layouts/layout.astro';
-
-const response = await fetch(
-	'https://public.api.bsky.app/xrpc/app.bsky.feed.getAuthorFeed?actor=jiggyflyjoe.com&limit=6'
-);
-const data = await response.json();
-const posts = data.feed.filter(item => !item.post.record.reply);
 ---
 
 <Layout title="Home">
@@ -24,33 +18,53 @@ const posts = data.feed.filter(item => !item.post.record.reply);
 	</section>
 
 	<section class="feed">
-    <h2>Latest from <span class="accent"><em>Bluesky</em></span> <i class="fa-brands fa-bluesky"></i></h2>
-    <p class="feed-intro">What I've been posting lately...</p>
+  <h2>Latest from <span class="accent">Bluesky</span></h2>
+  <p class="feed-intro">What I've been posting lately.</p>
 
-    <div class="feed-list">
-      {posts.map((item) => {
-		const post = item.post;
-		const text = post.record.text;
-		const date = new Date(post.record.createdAt).toLocaleDateString('en-US', {
-			year: 'numeric',
-			month: 'long',
-			day: 'numeric'
-		});
-		const url = `https://bsky.app/profile/jiggyflyjoe.com/post/${post.uri.split('/').pop()}`;
-		return (
-			<a href={url} target="_blank" class="feed-card">
-				<span class="post-date">{date}</span>
-				<p>{text}</p>
-				<span class="post-read">View on Bluesky →</span>
-			</a>
-		);
-	  })}
-    </div>
+  <div class="feed-list" id="bluesky-feed">
+    <p class="feed-loading">Loading posts...</p>
+  </div>
 
-    <div class="feed-footer">
-      <a href="https://bsky.app/profile/jiggyflyjoe.com" target="_blank" class="btn btn-outline">
-        <i class="fa-brands fa-bluesky"></i> Follow on Bluesky
-      </a>
-    </div>
-  </section>
+  <div class="feed-footer">
+    <a href="https://bsky.app/profile/jiggyflyjoe.com" target="_blank" class="btn btn-outline">
+      <i class="fa-brands fa-bluesky"></i> Follow on Bluesky
+    </a>
+  </div>
+</section>
+
+<script is:inline>
+  async function loadFeed() {
+    const container = document.getElementById('bluesky-feed');
+    try {
+      const response = await fetch(
+        'https://public.api.bsky.app/xrpc/app.bsky.feed.getAuthorFeed?actor=jiggyflyjoe.com&limit=6'
+      );
+      const data = await response.json();
+      const posts = data.feed.filter(item => !item.post.record.reply);
+
+      container.innerHTML = posts.map(item => {
+        const post = item.post;
+        const text = post.record.text;
+        const date = new Date(post.record.createdAt).toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        });
+        const url = `https://bsky.app/profile/jiggyflyjoe.com/post/${post.uri.split('/').pop()}`;
+
+        return `
+          <a href="${url}" target="_blank" class="feed-card">
+            <span class="post-date">${date}</span>
+            <p>${text}</p>
+            <span class="post-read">View on Bluesky →</span>
+          </a>
+        `;
+      }).join('');
+    } catch (error) {
+      container.innerHTML = '<p class="feed-loading">Could not load posts. Check me out on Bluesky directly!</p>';
+    }
+  }
+
+  loadFeed();
+</script>
 </Layout>
