@@ -1,35 +1,49 @@
 ---
 import Layout from '../layouts/layout.astro';
-
-const response = await fetch(
-    'https://enoki.us-east.host.bsky.network/xrpc/com.atproto.repo.listRecords?repo=jiggyflyjoe.com&collection=site.standard.document'
-);
-const data = await response.json();
-const posts = data.records;
 ---
 
 <Layout title="Blog">
     <section class="blog">
         <h1>The <span class="accent"><em>Blog</em></span></h1>
         <p class="blog-intro">My thoughts on tech, gaming, my cats, and whatever else is on my mind!</p>
-        <div class="post-list">
-            {posts.map((post) => {
-                const val = post.value;
-                const date = new Date(val.publishedAt).toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                });
-                const url = `https://pckt.blog/b/jiggyflyjoe${val.path}`;
-                return (
-                    <a href={url} target="_blank" class="post-card">
-                        <span class="post-date">{date}</span>
-                        <h2>{val.title}</h2>
-                        <p>{val.description}</p>
-                        <span class="post-read">Read more →</span>
-                    </a>
-                );
-            })}
+        <div class="post-list" id="pckt-posts">
+            <p class="feed-loading">Loading blog posts...</p>
         </div>
     </section>
+    
+    <script is:inline>
+        async function loadPosts() {
+            const container = document.getElementById('pckt-posts');
+            try {
+                const response = await fetch(
+                    'https://enoki.us-east.host.bsky.network/xrpc/com.atproto.repo.listRecords?repo=jiggyflyjoe.com&collection=site.standard.document'
+                );
+                const data = await response.json();
+                const posts = data.records;
+
+                container.innerHTML = posts.map(post => {
+                    const val = post.value;
+                    const date = new Date(val.publishedAt).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    });
+                    const url = `https://pckt.blog/b/jiggyflyjoe${val.path}`;
+
+                    return `
+                        <a href="${url}" target="_blank" class="post-card">
+                            <span class="post-date">${date}</span>
+                            <h2>${val.title}</h2>
+                            <p>${val.description}</p>
+                            <span class="post-read">Read more on Pckt →</span>
+                        </a>
+                    `;
+                }).join('');
+            } catch (error) {
+                container.innerHTML = '<p class="feed-loading">Could not load posts right now. Check back soon!</p>';
+            }
+        }
+
+        loadPosts();
+    </script>
 </Layout>
