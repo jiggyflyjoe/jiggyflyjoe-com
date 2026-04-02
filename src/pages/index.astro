@@ -37,31 +37,89 @@ import Layout from '../layouts/layout.astro';
     const container = document.getElementById('bluesky-feed');
     try {
       const response = await fetch(
-        'https://public.api.bsky.app/xrpc/app.bsky.feed.getAuthorFeed?actor=jiggyflyjoe.com&limit=6'
-      );
+        'https://public.api.bsky.app/xrpc/app.bsky.feed.getAuthorFeed?actor=jiggyflyjoe.com&limit=8'
+    );
       const data = await response.json();
       const posts = data.feed.filter(item => !item.post.record.reply);
 
       container.innerHTML = posts.map(item => {
         const post = item.post;
+        const author = post.author;
         const text = post.record.text;
-        const date = new Date(post.record.createdAt).toLocaleDateString('en-US', {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric'
+        const date = new Date(post.record.createdAt).toLocaleString('en-US', {
+          year: 'numeric', month: 'long', day: 'numeric'
         });
         const url = `https://bsky.app/profile/jiggyflyjoe.com/post/${post.uri.split('/').pop()}`;
+        const embed = post.embed;
+
+        let embedHTML = '';
+
+        if (embed) {
+          const type = embed.$type;
+
+          if (type === 'app.bsky.embed.images#view') {
+            const imgs = embed.images.map(img => `
+              <img src="${img.thumb}" alt="${img.alt || ''}" class="feed-image">
+            `).join('');
+            embedHTML = `<div class="feed-images">${imgs}</div>`;
+          }
+
+          else if (type === 'app.bsky.embed.external#view') {
+            const ext = embed.external;
+            const thumbHTML = ext.thumb
+              ? `<img src="${ext.thumb}" alt="${ext.title || ''}" class="feed-link-thumb">`
+              : '';
+            embedHTML = `
+              <div class="feed-link-card">
+                ${thumbHTML}
+                <div class="feed-link-text">
+                  <span class="feed-link-title">${ext.title || ext.uri}</span>
+                  <span class="feed-link-url">${new URL(ext.uri).hostname}</span>
+                  ${ext.description ? `<span class="feed-link-desc">${ext.description}</span>` : ''}
+                </div>
+              </div>
+            `;
+          }
+
+          else if (type === 'app.bsky.embed.record#view') {
+            const rec = embed.record;
+            if (rec && rec.author && rec.value) {
+              embedHTML = `
+                <div class="feed-quote">
+                  <div class="feed-quote-author">
+                    <img src="${rec.author.avatar}" alt="${rec.author.displayName}" class="feed-quote-avatar">
+                    <span>${rec.author.displayName}</span>
+                    <span class="feed-quote-handle">@${rec.author.handle}</span>
+                  </div>
+                  <p>${rec.value.text}</p>
+                </div>
+              `;
+            }
+          }
+        }
 
         return `
           <a href="${url}" target="_blank" class="feed-card">
-            <span class="post-date">${date}</span>
-            <p>${text}</p>
-            <span class="post-read">View on Bluesky →</span>
+            <div class="feed-card-header">
+              <img src="${author.avatar}" alt="${author.displayName}" class="feed-avatar">
+              <div class="feed-card-meta">
+                <span class="feed-display-name">${author.displayName}</span>
+                <span class="feed-handle">@${author.handle}</span>
+              </div>
+              <span class="post-date">${date}</span>
+            </div>
+            <p class="feed-text">${text}</p>
+            ${embedHTML}
+            <div class="feed-card-footer">
+              <span class="feed-stat"><i class="fa-solid fa-retweet"></i> ${post.repostCount}</span>
+              <span class="feed-stat"><i class="fa-solid fa-heart"></i> ${post.likeCount}</span>
+              <span class="post-read">View on Bluesky →</span>
+            </div>
           </a>
         `;
       }).join('');
     } catch (error) {
-      container.innerHTML = '<p class="feed-loading">Could not load posts. Check me out on Bluesky directly!</p>';
+      container.innerHTML = '<p class="feed-loading">Could not load posts. Check out my Bluesky profile directly!</p>';
     }
   }
 
