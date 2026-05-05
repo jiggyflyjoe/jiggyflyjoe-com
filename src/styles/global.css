@@ -33,6 +33,7 @@ body {
     font-size: 1.1rem;
     line-height: 1.7;
     transition: background-color 0.3s ease, color 0.3s ease;
+    background-image: url('grainy-squiggles-LIGHT.png');
 }
 
 a {
@@ -55,7 +56,7 @@ h1, h2, h3 {
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    max-width: 800px;
+    max-width: 950px;
     margin: 0 auto;
     padding: 0 1.5rem;
 }
@@ -63,7 +64,8 @@ h1, h2, h3 {
 .site-logo {
     font-family: 'Oswald', Impact, sans-serif;
     font-size: 2rem;
-    font-weight: 900;
+    font-weight: 700;
+    font-style: italic;
     letter-spacing: 0.5px;
     transform: skewX(-8deg) rotate(-4deg);
     display: inline-block;
@@ -107,7 +109,7 @@ nav a:hover {
 }
 
 .nav-socials a {
-    font-size: 1rem;
+    font-size: 1.1rem;
     transition: color 0.2s;
     text-decoration: none;
 }
@@ -200,7 +202,7 @@ footer {
 
 .hero-image {
     flex-shrink: 0;
-    width: 280px;
+    width: 320px;
 }
 
 .hero-image img {
@@ -459,7 +461,7 @@ footer {
 }
 
 .fa-ko-fi {
-    color: #6f9eeb;
+    color: #FF6433;
 }
 
 .wave {
@@ -619,6 +621,11 @@ footer {
     font-size: 0.875rem;
     color: var(--text);
     margin: 0;
+}
+
+figcaption {
+    font-size: 0.9rem;
+    color: gray;
 }
 
 @media (max-width: 640px) {
