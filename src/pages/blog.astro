@@ -29,14 +29,22 @@ import Layout from '../layouts/layout.astro';
                         month: 'long',
                         day: 'numeric'
                     });
-                    const url = `https://pckt.blog/b/jiggyflyjoe${val.path}`;
+                    
+                    let url, readMoreText;
+                    if (val.content.$type === 'pub.leaflet.content') {
+                        url = `https://blog.jiggyflyjoe.com${val.path}`;
+                        readMoreText = 'Read more on Leaflet →';
+                    } else {
+                        url = `https://pckt.blog/b/jiggyflyjoe${val.path}`;
+                        readMoreText = 'Read More on Pckt →';
+                    }
 
                     return `
                         <a href="${url}" target="_blank" class="post-card">
                             <span class="post-date">${date}</span>
                             <h2>${val.title}</h2>
                             <p>${val.description}</p>
-                            <span class="post-read">Read more on Pckt →</span>
+                            <span class="post-read">${readMoreText}</span>
                         </a>
                     `;
                 }).join('');
