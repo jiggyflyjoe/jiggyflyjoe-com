@@ -253,6 +253,29 @@ footer {
     clear: both;
 }
 
+.bff-image {
+    float: right;
+    width: 220px;
+    margin: 0 2rem 1rem 0;
+}
+
+.bff-image img {
+    width: 125%;
+    border-radius: 50%;
+    border: 3px solid var(--accent);
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    object-position: top;
+}
+
+.best-friends h1 {
+    margin-bottom: 1.5rem;
+}
+
+.bff-text {
+    margin-bottom: 1rem;
+}
+
 .now {
     padding: 2rem 0;
 }
@@ -470,6 +493,10 @@ footer {
 
 .fa-ko-fi {
     color: #FF6433;
+}
+
+.fa-heart {
+    color: red;
 }
 
 .wave {
