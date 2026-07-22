@@ -206,6 +206,21 @@ footer {
     transition: background-color 0.2s;
 }
 
+.donate {
+    background-color: var(--neon-yellow);
+    color: #000000;
+    padding: 0.6rem 1.4rem;
+    border-radius: 999px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.donate:hover {
+    color: var(--border);
+    text-decoration: none;
+}
+
 .btn:hover {
     background-color: var(--accent-dim);
     color: #ffffff;
