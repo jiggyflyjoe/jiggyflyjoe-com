@@ -581,7 +581,6 @@ hr {
 
 .feed-card {
     max-width: 100%;
-    overflow: hidden;
 }
 
 .feed-avatar {
@@ -637,7 +636,7 @@ hr {
 
 .feed-image {
     max-width: 100%;
-    max-height: 300px;
+    max-height: 200px;
     border-radius: 0.5rem;
     object-fit: cover;
     flex: 1;
